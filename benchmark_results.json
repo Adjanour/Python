@@ -1,0 +1,16 @@
+[
+    {
+        "request_id": 0,
+        "latency": 12.414116899999499,
+        "status": 200,
+        "content_size": 314,
+        "streamed_content": "data: \"Oziza \"\n\ndata: \"is \"\n\ndata: \"a \"\n\ndata: \"platform \"\n\ndata: \"that \"\n\ndata: \"offers \"\n\ndata: \"h"
+    },
+    {
+        "request_id": 1,
+        "latency": 19.460927000000083,
+        "status": 200,
+        "content_size": 314,
+        "streamed_content": "data: \"Oziza \"\n\ndata: \"is \"\n\ndata: \"a \"\n\ndata: \"platform \"\n\ndata: \"that \"\n\ndata: \"offers \"\n\ndata: \"h"
+    }
+]

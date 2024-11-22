@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listen to Article</title>
+  <style>
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <article id="content">
+    <h1>How to Build a Client-Side TTS Feature</h1>
+    <p>This article explains how to build a free, client-side, text-to-speech feature using the Web Speech API.</p>
+    <p>The goal is to create a natural-sounding, browser-based solution without any backend.</p>
+  </article>
+  
+  <button id="ttsButton">Listen to this article</button>
+  
+  <script>
+    const button = document.getElementById('ttsButton');
+    const article = document.getElementById('content');
+
+    let isSpeaking = false; // Tracks whether TTS is currently active
+    let synth = window.speechSynthesis;
+
+    button.addEventListener('click', () => {
+      if (isSpeaking) {
+        synth.cancel(); // Stop speaking if already speaking
+        button.textContent = "Listen to this article";
+        isSpeaking = false;
+      } else {
+        const text = article.textContent; // Get article text
+        const utterance = new SpeechSynthesisUtterance(text);
+        
+        // Optional: Customize voice, pitch, and speed
+        utterance.pitch = 1; // Normal pitch
+        utterance.rate = 1; // Normal speed
+        utterance.voice = synth.getVoices().find(voice => voice.lang === 'en-US'); // Choose a specific voice (English)
+
+        utterance.onstart = () => {
+          isSpeaking = true;
+          button.textContent = "Pause";
+        };
+        
+        utterance.onend = () => {
+          isSpeaking = false;
+          button.textContent = "Listen to this article";
+        };
+
+        synth.speak(utterance);
+      }
+    });
+  </script>
+</body>
+</html>
